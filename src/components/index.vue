@@ -56,18 +56,69 @@
       </div>
     </div>
     <div class="index-content">
-      <div class="recommend"></div>
+      <div class="recommend">
+        <div class="carousel-box">
+          <div class="carousel-content">
+            <ul class="pic">
+              <li>
+                <a href="">
+                  <img src="../../static/image/carousel1.jpg"/>
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  <img src="../../static/image/carousel2.jpg"/>
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  <img src="../../static/image/carousel3.jpg"/>
+                </a>
+              </li>
+            </ul>
+            <ul class="title">
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+            <ul class="btn">
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </div>
+        </div>
+        <div class="recommend-content"></div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+  import $ from "jquery";
   export default {
     name: 'index',
     data () {
       return {
 
       }
+    },
+    mounted(){
+      let _this=this;
+      let timer = setInterval(function(){
+        let a = $('.pic').css("margin-left");
+        let w = $('.pic').css("width");
+        a=a.replace("px","");
+        w=w.replace("px","");
+        if(Math.abs(a)>=Math.abs(w/2)){
+          $('.pic').css("margin-left","0");
+        }else{
+          $('.pic').css("margin-left",a-440+"px");
+        }
+      },5000);
+
+    },
+    methods:{
     }
   }
 </script>
@@ -76,8 +127,7 @@
 <style scoped>
 .index-header{
   width:100%;
-  position: absolute;
-  top:0;
+  position: relative;
 }
 /*导航栏*/
 .nav-menu{
@@ -258,5 +308,29 @@
 .index-content{
   width:980px;
   margin:0 auto;
+}
+.recommend{
+  padding-bottom:40px;
+}
+.carousel-box{
+  width:440px;
+  height:220px;
+  float:left;
+}
+.carousel-box .carousel-content{
+  width:100%;
+  height:100%;
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.carousel-box .carousel-content .pic{
+  width:300%;
+  margin-left:0%;
+  transition: all .3s;
+  -webkit-transition: all .3s;
+}
+.carousel-box .carousel-content ul li{
+  float:left;
 }
 </style>
