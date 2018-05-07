@@ -77,14 +77,14 @@
               </li>
             </ul>
             <ul class="title">
-              <li></li>
-              <li></li>
-              <li></li>
+              <a href="" class="active">欢迎加入“妙笔生花”秘境</a>
+              <a href="">出道!鬼畜偶像天团</a>
+              <a href="">钢铁直男大百科</a>
             </ul>
             <ul class="btn">
-              <li></li>
-              <li></li>
-              <li></li>
+              <span class="btnOn"></span>
+              <span></span>
+              <span></span>
             </ul>
           </div>
         </div>
@@ -112,8 +112,33 @@
         w=w.replace("px","");
         if(Math.abs(a)>=Math.abs(w/2)){
           $('.pic').css("margin-left","0");
+          $('.title a:eq(0)').attr("class","active");
+          $('.title a:eq(1)').attr("class","");
+          $('.title a:eq(2)').attr("class","");
+          $('.btn span:eq(0)').attr("class","btnOn");
+          $('.btn span:eq(1)').attr("class","");
+          $('.btn span:eq(2)').attr("class","");
         }else{
           $('.pic').css("margin-left",a-440+"px");
+          console.log(Math.abs(a));
+          if(Math.abs(a)==0){
+            $('.title a:eq(1)').attr("class","active");
+            $('.title a:eq(1)').css("top","-35px");
+            $('.title a:eq(0)').attr("class","");
+            $('.title a:eq(2)').attr("class","");
+            $('.btn span:eq(1)').attr("class","btnOn");
+            $('.btn span:eq(0)').attr("class","");
+            $('.btn span:eq(2)').attr("class","");
+          }
+          else if(Math.abs(a)==440){
+            $('.title a:eq(2)').attr("class","active");
+            $('.title a:eq(2)').css("top","-70px");
+            $('.title a:eq(0)').attr("class","");
+            $('.title a:eq(1)').attr("class","");
+            $('.btn span:eq(2)').attr("class","btnOn");
+            $('.btn span:eq(0)').attr("class","");
+            $('.btn span:eq(1)').attr("class","");
+          }
         }
       },5000);
 
@@ -325,6 +350,7 @@
   overflow: hidden;
 }
 .carousel-box .carousel-content .pic{
+  z-index:1;
   width:300%;
   margin-left:0%;
   transition: all .3s;
@@ -332,5 +358,49 @@
 }
 .carousel-box .carousel-content ul li{
   float:left;
+}
+.carousel-box .carousel-content .title{
+  z-index:2;
+  background-color:rgba(0,0,0,0.3);
+  width:100%;
+  height:35px;
+  line-height: 35px;
+  font-size:14px;
+  position:absolute;
+  bottom:0;
+  left:0;
+  float:left;
+}
+.carousel-box .carousel-content .title>a{
+  color:white;
+  width:280px;
+  padding-left: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space:nowrap;
+  display: block;
+  transition:all .3s;
+  opacity: 0;
+  position: relative;
+}
+.active{
+  opacity: 1 !important;
+}
+.carousel-box .carousel-content .btn{
+  position: absolute;
+  z-index:3;
+  bottom:6px;
+  right:20px;
+}
+.carousel-box .carousel-content .btn>span{
+  width:15px;
+  height:15px;
+  border-radius: 50%;
+  background-color:white;
+  display: inline-block;
+  margin-left:10px;
+}
+.btnOn{
+  background-color: #04c7ff !important;
 }
 </style>
